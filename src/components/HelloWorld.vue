@@ -2,10 +2,14 @@
   <div class="hello">
     <h1 class="title">{{ msg }}</h1>
     <br>
-    <router-link to="/dashboard" class="link-dashboard">to Dash Board
+    <router-link
+      :to="{name: 'dash_board'}"
+      class="link-dashboard">to Dash Board
     </router-link>
     <br>
-    <router-link to="/main" class="link-dashboard">to Main screen
+    <router-link
+      :to="{name: 'main_img'}"
+      class="link-dashboard">to Main screen
     </router-link>
     <router-view/>
   </div>

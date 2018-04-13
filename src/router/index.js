@@ -10,18 +10,19 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
+      name: 'root',
       component: HelloWorld,
       children: [
         {
-          path: '/main',
+          path: 'img',
+          name: 'main_img',
           component: HelloMain
         }
       ]
     },
     {
-      path: '/dashboard',
-      name: 'DashBoard',
+      path: '/dash_board',
+      name: 'dash_board',
       component: DashBoard
     }
   ]

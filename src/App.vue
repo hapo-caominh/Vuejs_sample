@@ -1,6 +1,10 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png" class="logo">
+  <div
+    id="app"
+    class="container">
+    <img
+      src="./assets/logo.png"
+      class="logo">
     <router-view/>
   </div>
 </template>
@@ -12,13 +16,10 @@ export default {
 </script>
 
 <style>
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-.app {
+#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 30px;
 }

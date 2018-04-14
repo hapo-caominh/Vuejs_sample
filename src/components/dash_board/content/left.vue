@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 main">
+  <div class="col-md-3 form-div">
     <form
       class="hero-form"
       @submit.prevent="submit1">
@@ -67,6 +67,14 @@ export default {
   },
   methods: {
     submit1 () {
+      if (this.typesOf.length === 0) {
+        alert('You should choose a type for the hero')
+        return
+      }
+      if (this.heros.find(check => check.name === this.name)) {
+        alert('Already have hero with this name. Choose differently')
+        return
+      }
       this.heros.push({name: this.name, typesOf: this.typesOf, status: this.status})
       this.name = ''
       this.status = false
@@ -75,6 +83,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

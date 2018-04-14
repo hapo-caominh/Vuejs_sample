@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-7 main">
+  <div class="col-md-7">
     <button
       v-show="!adding"
       class="btn-success btn-sm"
@@ -17,27 +17,28 @@
       @click="currentTab = kind.name"
     >{{ kind.name }}</button>
     <div
-      v-if="currentTab !== ''"
-      class="main-dash">
-      <div
-        v-for="kind in types"
-        v-if="currentTab === kind.name"
-        :key="kind.index"
-      >
-        <ul>
-          <li
-            v-for="hero in heros"
-            v-if="hero.typesOf.includes(currentTab)"
-            :key="hero.index"
-          >{{ hero.name }} is {{ hero.status ? "Alive" : "Died" }}</li>
-        </ul>
-      </div>
+      v-for="kind in types"
+      v-if="currentTab === kind.name && currentTab !== ''"
+      :key="kind.index"
+      class="row main-dash"
+    >
+      <hero-info
+        v-for="hero in heros"
+        v-if="hero.typesOf.includes(currentTab)"
+        :key="hero.index"
+        :hero="hero"
+        class="col-md-2"/>
     </div>
   </div>
 </template>
 
 <script>
+import HeroInfoVue from '@/components/dash_board/content/hero_info.vue'
+
 export default {
+  components: {
+    'hero-info': HeroInfoVue
+  },
   props: {
     herotypes: { type: Array, default () { return [] } },
     heros: { type: Array, default () { return [] } }
@@ -68,12 +69,3 @@ export default {
   }
 }
 </script>
-
-<style scope>
-.main {
-  float: left;
-}
-.main-dash {
-  background-color: #d3d3d3;
-}
-</style>

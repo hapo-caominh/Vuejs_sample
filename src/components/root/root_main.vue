@@ -19,20 +19,3 @@ export default {
   }
 }
 </script>
-
-<style scope>
-.root-main{
-  margin-top: 80px;
-  margin-left: 20px;
-}
-.main-collapse {
-  padding: 10px;
-  display: block;
-}
-.float-left {
-  float: left;
-}
-.main-img {
-  margin-top: 5 0px;
-}
-</style>

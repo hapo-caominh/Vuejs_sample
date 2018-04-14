@@ -8,7 +8,7 @@
         class="back-main">Back</router-link>
     </div>
     <div class="container">
-      <div class="col-md-12">
+      <div class="container">
         <span>Filter:</span>
         <select
           v-model="filter">
@@ -20,30 +20,23 @@
           <option>Alive</option>
           <option>Died</option>
         </select>
-        <div v-if="filter === 'All'">
-          <h3
+        <div class="row">
+          <hero-info
             v-for="hero in heros"
+            v-if="filter === 'All' || hero.status === status"
             :key="hero.index"
-            class="pull-left"
-          >{{ hero.name }} is {{ hero.status ? "Alive" : "Died" }}
-            in {{ hero.typesOf }}</h3>
-        </div>
-        <div v-else>
-          <h3
-            v-for="hero in heros"
-            v-if="hero.status === status"
-            :key="hero.index"
-            class="pull-left">
-            {{ hero.name }} in {{ hero.typesOf }}
-          </h3>
+            :hero="hero"
+            class="col-md-1"/>
         </div>
       </div>
-      <left-dash
-        :herotypes="types"
-        :heros="heros"/>
-      <main-dash
-        :herotypes="types"
-        :heros="heros"/>
+      <div class="row">
+        <left-dash
+          :herotypes="types"
+          :heros="heros"/>
+        <main-dash
+          :herotypes="types"
+          :heros="heros"/>
+      </div>
     </div>
   </div>
 </template>
@@ -51,11 +44,13 @@
 <script>
 import MainDashVue from '@/components/dash_board/content/main.vue'
 import LeftDashVue from '@/components/dash_board/content/left.vue'
+import HeroInfoVue from '@/components/dash_board/content/hero_info.vue'
 
 export default {
   components: {
     'main-dash': MainDashVue,
-    'left-dash': LeftDashVue
+    'left-dash': LeftDashVue,
+    'hero-info': HeroInfoVue
   },
   data () {
     return {
@@ -65,7 +60,8 @@ export default {
         {name: 'legend'}
       ],
       heros: [
-        {name: 'thor', typesOf: ['iron', 'flying', 'legend'], status: true}
+        {name: 'Thor', typesOf: ['iron', 'flying', 'legend'], status: true},
+        {name: 'Iron man', typesOf: ['iron', 'flying'], status: false}
       ],
       filter: 'All',
       status: false,
@@ -80,17 +76,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.title {
-  margin: 0 20px 0 20px;
-  font-size: 24px;
-  font-weight: bold;
-}
-.back-main {
-  margin-left: 100px;
-}
-.header {
-  margin-bottom: 70px;
-}
-</style>
